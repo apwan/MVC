@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+	<title>Instant Image Cloning Demo</title>
+	<script src="underscore-min.js"></script>
+    <script src="cdt.js"></script>
+	<script src="quad.js"></script>
+	<script src="mvc.js"></script>
+	<script src="cloner.js"></script>
+	<script src="ui.js"></script>
+	<style>
+	canvas {
+		border: 1pt solid black;
+	}
+	</style>
+</head>
+<body>
+<div id="mvc_demo" style="position: absolute; top: 100px; height:900px; width:1000px; overflow: scroll;">
+<h1>Instant Image Cloning Demo (Using MVC and Quadratree)</h1>
+<p>Select one region in the upper figure, then drag in the lower figure.</p>
+<p>You need a local server to serve the images, so that the cross-origin access is allowed.</p>
+
+<form id="mode_selector">
+	<label for="mode">Select a mode</label>
+	<select name="mode" id="mode">
+		<option value="0">Composite</option>
+		<option value="1">Membrane</option>
+		<option value="2">Average</option>
+		<option value="3" selected>Mean-value Coordinates</option>
+		<!--<option value="4">Gradient</option> -->
+	</select>
+</form>
+
+<div id="mvc_src" width="400px" height="400px" style="position: absolute; ">
+<canvas class="cvs_bg"  style="z-index: 1;top: 0;left: 0;width=100%;position: absolute"></canvas>
+<canvas class="cvs_fg"  style="z-index: 2;top: 0;left: 0;width=100%;position: absolute"></canvas>
+<canvas class="cvs_aid" style="z-index: 3;top: 0;left: 0;width=100%;position: absolute"></canvas>
+</div>
+
+
+
+<div id="mvc_tgt" width="1000px" height="200px" style="position: absolute; top:470px;">
+<canvas class="cvs_bg"  style="z-index: 1;top: 0;left: 0;width=50%;position: absolute;"></canvas>
+<canvas class="cvs_fg"  style="z-index: 2;top: 0;left: 0;width=50%;position: absolute;"></canvas>
+<canvas class="cvs_aid"  style="z-index: 3;top: 0;left: 0;width=50%;position: absolute;"></canvas>
+</div>
+
+</div>
+
+
+
+</body>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+    init();
+    registerEvents();
+});
+
+</script>
+
+</html>
